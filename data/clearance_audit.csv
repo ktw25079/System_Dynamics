@@ -1,0 +1,20 @@
+item,clearance_mm,required_mm,status,note
+screw_vs_finger_inner_face,23.0,5.0,PASS,Centered screw grip; finger inner face outside screw radius.
+screw_vs_tip_pad_inner_face,24.0,5.0,PASS,Centered screw grip; black tip pad outside screw radius.
+bearing_vs_finger_inner_face,9.0,5.0,PASS,Bearing OD centered in finger gap.
+bearing_vs_tip_pad_inner_face,10.0,5.0,PASS,Bearing OD centered in pad gap.
+bearing_holder_cap_radial_gap,6.0,5.0,PASS,Holder cap radius is smaller than bearing inner radius to avoid visual overlap.
+bearing_holder_cap_vertical_gap,3.0,2.0,PASS,Holder cap top is below the bearing lower surface at the pickup fixture.
+screw_bottom_to_table_top,3.552713678800501e-15,0.0,PASS,Zero means the screw sits flush on the tabletop.
+bearing_final_bottom_to_table_top,0.0,0.0,PASS,Zero means final bearing is guided to touch the tabletop without pass-through.
+bearing_controlled_vertical_drop_distance,243.0,50.0,PASS,"After gripper release, bearing motion is vertical only: insertion, slide, and table-settled drop."
+bearing_carried_to_screw_axis_before_release,0.0,0.5,PASS,Lower is better: gripper carries the bearing concentric with the screw before release.
+bearing_drop_carriage_xy_travel_after_release,0.0,0.5,PASS,Lower is better: no airborne horizontal motion is allowed after release.
+bearing_guided_insert_xy_alignment_to_screw,0.0,0.5,PASS,Lower is better: guided insert target is concentric with the screw axis.
+bearing_insert_depth_after_guided_insert,12.0,12.0,PASS,"At release, the bearing is already slightly inside the screw top before vertical settling."
+bearing_slide_depth_before_table_settle,38.0,12.0,PASS,"After release, the guide moves the bearing down the screw before tabletop settling."
+post_release_retract_bottom_to_screw_top_min,83.0,5.0,PASS,Estimated gripper bottom clearance after release while the gripper retracts away from the screw.
+post_release_retract_xy_from_screw_axis,287.14108030722457,220.0,PASS,Gripper retract target is pulled laterally away from screw and robot body after bearing release.
+bearing_final_hold_after_drop,0.10000000000000142,0.05,PASS,"Final hold starts after the vertical guide settles, removing rebound in final playback."
+minimum_gripper_local_bottom_to_table,7.970366074613626,0.0,PASS,Lowest estimated marker state: bearing_pregrip.
+bearing_holder_to_screw_start_xy,319.97605780340587,5.0,PASS,Keeps bearing holder away from screw pickup path.

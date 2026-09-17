@@ -88,4 +88,3 @@ python scripts/postprocess_results.py
 ## 출처와 이용 범위
 
 UR3 CAD와 매니퓰레이터 강의 예제를 바탕으로 수행한 수업 프로젝트입니다. 과제 및 강의 PDF 원문, RecurDyn 설치 파일은 포함하지 않습니다. 원본 CAD와 상용 소프트웨어의 권리는 각 권리자에게 있으며, 이 저장소에 일괄 오픈소스 라이선스를 부여하지 않았습니다. 파일 출처 및 원본 해시는 [source_manifest.json](docs/source_manifest.json)에 기록했습니다.
-
