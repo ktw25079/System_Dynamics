@@ -1,0 +1,11 @@
+pp_name,time_s,control_marker,x_mm,y_mm,z_mm
+PPSD_00_screw_approach,0.000000,grip_contact_center,-553.001837459,-148.999990059,261.700000000
+PPSD_02_screw_pick,1.550000,grip_contact_center,-457.001837459,-292.999990059,116.700000000
+PPSD_04_screw_lift,3.000000,grip_contact_center,-457.001837459,-292.999990059,286.700000000
+PPSD_06_screw_place,5.800000,grip_contact_center,-250.000000000,-245.000000000,116.700000000
+PPSD_08_screw_retract,7.000000,grip_contact_center,-349.800000000,-95.200000000,109.500000000
+PPSD_09_bearing_approach,8.500000,grip_contact_center_vertical_fixed,-430.000000000,225.000000000,206.700000000
+PPSD_11_bearing_pick,10.800000,grip_contact_center_vertical_fixed,-430.000000000,80.000000000,56.700000000
+PPSD_14_bearing_over_screw,14.250000,grip_contact_center_vertical_fixed,-250.000000000,-245.000000000,341.700000000
+PPSD_16_bearing_insert,16.050000,grip_contact_center_vertical_fixed,-250.000000000,-245.000000000,234.700000000
+PPSD_18_bearing_retract,17.050000,grip_contact_center_vertical_fixed,-415.000000000,-10.000000000,391.700000000
