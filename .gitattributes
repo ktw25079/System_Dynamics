@@ -1,0 +1,12 @@
+# Preserve original simulation and CSV bytes for reproducible hashes.
+* -text
+*.md text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.rdyn binary
+*.rplt binary
+*.ran binary
+*.rad binary
+*.png binary
+*.pdf binary
+*.docx binary
