@@ -1,0 +1,22 @@
+{
+  "method": "Recalculate archived request data; no solver rerun",
+  "axis": "Local TZ for every revolute joint; request RM equals the joint base marker",
+  "force_unit": "N",
+  "source_torque_unit": "N mm",
+  "output_torque_unit": "N m",
+  "duration_s": 18.4999999998,
+  "samples_per_joint": 901,
+  "internal_motion_states": 20,
+  "safety_factor": 1.5,
+  "sha256": {
+    "req": "872526dca41b9b6aa7d00e59f479a52419f024df9f7b1d4f14d9c397cb634532",
+    "rmd": "e12e74fdd2cdde7b8da709b219de89343b979fada06d0ea7b4cf5e3ac50870df",
+    "joint_table": "ea66283454830bfb45fc1dea71f8073fad40ca0189dd5b966a68f0d0ad43ecd9"
+  },
+  "limitations": [
+    "Prescribed motion, rigid surrogate gripper and switched ideal constraints",
+    "No active contact forces or validated frictional gripping/free fall",
+    "Joint-side sampled peak torques, not a gearbox or commercial motor selection",
+    "Waypoint-average speeds are not instantaneous STEP profile peak speeds"
+  ]
+}
