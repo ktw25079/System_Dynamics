@@ -3,6 +3,8 @@
 **2026년 1학기 시스템동역학 프로젝트 · 강태욱**  
 RecurDyn 2023 · 6축 매니퓰레이터 · 스크류 이송 및 베어링 삽입
 
+## 목적
+
 UR3가 스크류를 목표 위치에 세운 뒤, 베어링을 이송해 스크류에 수직으로 끼우는 시뮬레이션입니다. CAD 기반 동역학 모델링부터 경로 설정, 관절 토크 분석까지의 결과를 정리했습니다.
 
 [모델 열기](model/SystemDynamics_UR3_pick_place_screw_bearing.rdyn) · [실행 안내](docs/reproduction.md) · [과제 조건](docs/requirements.md) · [토크 분석](docs/torque_review.md)
@@ -11,7 +13,11 @@ UR3가 스크류를 목표 위치에 세운 뒤, 베어링을 이송해 스크�
 
 <sub>작업 순서를 설명하는 개념도입니다. 실제 해석 화면이나 축척 도면은 아닙니다.</sub>
 
-## 작업 흐름
+## 진행 과정
+
+CAD 형상으로 6축 로봇과 작업물을 구성하고, 웨이포인트와 조인트 모션을 설정한 뒤 해석 결과에서 관절별 토크를 계산했습니다.
+
+### 작업 순서
 
 | 단계 | 수행 동작 |
 |:---:|---|
@@ -21,21 +27,6 @@ UR3가 스크류를 목표 위치에 세운 뒤, 베어링을 이송해 스크�
 | **04 · Insert** | 베어링을 수직으로 삽입하고 그리퍼를 후퇴시킵니다. |
 
 두 물체에 각각 **5개의 핵심 웨이포인트**를 지정했으며, 총 **20개 모션 상태**로 **18.5초**의 작업을 구성했습니다.
-
-## 실행 방법
-
-1. 저장소를 내려받고 RecurDyn 2023에서 [최종 `.rdyn` 모델](model/SystemDynamics_UR3_pick_place_screw_bearing.rdyn)을 엽니다.
-2. 작업 사본을 저장한 뒤 **Dynamic Analysis**를 **18.5 s**까지 실행합니다.
-3. 애니메이션과 `REQ_TORQUE_J1`–`REQ_TORQUE_J6` 결과를 확인합니다.
-
-`model/`의 `.rmd`, `.rpp`, `.rpv` 파일을 함께 보관하세요. 단위와 적분기 설정, 단계별 시각은 [재현 절차](docs/reproduction.md)에 정리했습니다.
-
-저장된 해석 결과만 재계산하려면 **Python 3.10 이상**에서 다음을 실행합니다. 추가 패키지는 필요하지 않습니다.
-
-```bash
-python scripts/postprocess_results.py
-python scripts/postprocess_results.py --check
-```
 
 ## 주요 결과
 
@@ -63,6 +54,21 @@ python scripts/postprocess_results.py --check
 | [docs/](docs/) | 과제 요구사항, 모델 구성, 재현 절차와 정정 내역 |
 | [reports/original/](reports/original/) | 기존 과제 보고서 PDF·DOCX 보관본 |
 | [assets/](assets/) | 작업 순서 개념도와 제작 정보 |
+
+## 실행 방법
+
+1. 저장소를 내려받고 RecurDyn 2023에서 [최종 `.rdyn` 모델](model/SystemDynamics_UR3_pick_place_screw_bearing.rdyn)을 엽니다.
+2. 작업 사본을 저장한 뒤 **Dynamic Analysis**를 **18.5 s**까지 실행합니다.
+3. 애니메이션과 `REQ_TORQUE_J1`–`REQ_TORQUE_J6` 결과를 확인합니다.
+
+`model/`의 `.rmd`, `.rpp`, `.rpv` 파일을 함께 보관하세요. 단위와 적분기 설정, 단계별 시각은 [재현 절차](docs/reproduction.md)에 정리했습니다.
+
+저장된 해석 결과만 재계산하려면 **Python 3.10 이상**에서 다음을 실행합니다. 추가 패키지는 필요하지 않습니다.
+
+```bash
+python scripts/postprocess_results.py
+python scripts/postprocess_results.py --check
+```
 
 ## 모델링 범위
 
