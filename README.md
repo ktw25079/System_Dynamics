@@ -1,13 +1,14 @@
 # UR3 Pick & Place
 
-**2026년 1학기 시스템동역학 프로젝트 · 강태욱**  
-RecurDyn 2023 · 6축 매니퓰레이터 · 스크류 이송 및 베어링 삽입
+**6축 UR3의 스크류 이송·베어링 삽입을 모델링하고, 저장된 해석 결과로 관절 토크를 검토한 프로젝트.**
+
+2026년 1학기 시스템동역학 · 강태욱 · RecurDyn 2023
+
+[최종 모델](model/README.md) · [실행 안내](docs/reproduction.md) · [검증 결과](results/README.md) · [설계 문서](docs/README.md)
 
 ## 목적
 
 UR3가 스크류를 목표 위치에 세운 뒤, 베어링을 이송해 스크류에 수직으로 끼우는 시뮬레이션입니다. CAD 기반 동역학 모델링부터 경로 설정, 관절 토크 분석까지의 결과를 정리했습니다.
-
-[모델 열기](model/SystemDynamics_UR3_pick_place_screw_bearing.rdyn) · [실행 안내](docs/reproduction.md) · [과제 조건](docs/requirements.md) · [토크 분석](docs/torque_review.md)
 
 ![UR3의 스크류 집기, 배치, 베어링 정렬 및 삽입 순서](assets/fig04_final_task_layout.png)
 
@@ -30,7 +31,7 @@ CAD 형상으로 6축 로봇과 작업물을 구성하고, 웨이포인트와 �
 
 ## 주요 결과
 
-각 관절의 로컬 회전축 **TZ**를 기준으로 계산한 샘플 최대 토크입니다. 원시 모멘트의 단위는 N·mm이며, 아래 표는 N·m로 환산했습니다.
+**18.5 s 작업 · 20개 모션 상태 · 관절당 901개 저장 샘플.** 아래 값은 저장된 Request를 각 관절의 로컬 회전축 **TZ**로 재계산한 절댓값 최대 토크입니다. 원시 단위 N·mm를 N·m로 환산했습니다. [검증 기록](results/verification.json)
 
 | 관절 | 최대 토크 (N·m) | 안전율 1.5 적용 (N·m) |
 |---|---:|---:|
@@ -47,13 +48,13 @@ CAD 형상으로 6축 로봇과 작업물을 구성하고, 웨이포인트와 �
 
 | 경로 | 내용 |
 |---|---|
-| [model/](model/) | 최종 RecurDyn 모델과 해석·파라미터 파일 |
-| [data/](data/) | 웨이포인트, 관절 자세, 기하학적 여유 검토 |
-| [results/](results/) | 수정된 토크 결과와 최종 솔버 원시 데이터 |
-| [scripts/](scripts/) | 토크 재계산 및 결과 검증 스크립트 |
-| [docs/](docs/) | 과제 요구사항, 모델 구성, 재현 절차와 정정 내역 |
-| [reports/original/](reports/original/) | 기존 과제 보고서 PDF·DOCX 보관본 |
-| [assets/](assets/) | 작업 순서 개념도와 제작 정보 |
+| [model/](model/README.md) | 최종 RecurDyn 모델과 해석·파라미터 파일 |
+| [data/](data/README.md) | 웨이포인트, 관절 자세, 기하학적 여유 검토 |
+| [results/](results/README.md) | 수정된 토크 결과와 최종 솔버 원시 데이터 |
+| [scripts/](scripts/README.md) | 토크 재계산 및 결과 검증 스크립트 |
+| [docs/](docs/README.md) | 과제 요구사항, 모델 구성, 재현 절차와 정정 내역 |
+| [reports/](reports/README.md) | 기존 과제 보고서 PDF·DOCX와 현재 결과의 차이 |
+| [assets/](assets/README.md) | 작업 순서 개념도와 제작 정보 |
 
 ## 실행 방법
 
@@ -63,12 +64,15 @@ CAD 형상으로 6축 로봇과 작업물을 구성하고, 웨이포인트와 �
 
 `model/`의 `.rmd`, `.rpp`, `.rpv` 파일을 함께 보관하세요. 단위와 적분기 설정, 단계별 시각은 [재현 절차](docs/reproduction.md)에 정리했습니다.
 
-저장된 해석 결과만 재계산하려면 **Python 3.10 이상**에서 다음을 실행합니다. 추가 패키지는 필요하지 않습니다.
+저장된 해석 결과의 일치 여부는 **Python 3.10 이상**에서 확인합니다. 추가 패키지나 RecurDyn 실행이 필요하지 않습니다.
 
 ```bash
-python scripts/postprocess_results.py
+git clone https://github.com/ktw25079/System_Dynamics.git
+cd System_Dynamics
 python scripts/postprocess_results.py --check
 ```
+
+결과 파일을 다시 만들려면 `python scripts/postprocess_results.py`를 실행합니다. [입력·출력과 검사 항목](scripts/README.md)
 
 ## 모델링 범위
 
