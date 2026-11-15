@@ -1,11 +1,7 @@
-# Workflow illustration
+# 작업 순서 개념도
 
-`fig04_final_task_layout.png` explains four stages: pick the screw, place it upright, align the bearing, and insert the bearing before retracting the gripper.
+[fig04_final_task_layout.png](fig04_final_task_layout.png)는 스크류 집기 → 수직 배치 → 베어링 정렬 → 삽입·그리퍼 후퇴 순서를 보여 주는 설명용 이미지입니다.
 
-The image is an illustrative rendering, not a RecurDyn screenshot, dimensional drawing, or record of simulated contact behavior. Amber identifies the screw, teal the bearing, and blue the motion arrows. Fixtures and robot poses are simplified for readability.
+주황색은 스크류, 청록색은 베어링, 파란색 화살표는 이동 방향을 나타냅니다. 실제 모델 구성과 해석 조건은 [모델 설명](../docs/model.md)을 참고하세요.
 
-Created on 2026-09-17 with the built-in image generation tool. The previous rough diagram was used as the task reference. A second pass removed the extra destination pin so the illustration shows a bearing sliding down the screw itself.
-
-## Design prompt
-
-Create a polished four-panel engineering infographic for a UR3 system dynamics project, with a white background, navy typography, silver robot links, blue joint covers, an amber screw, and a teal bearing. Show the same workcell from a consistent isometric view. Label the stages “01 PICK SCREW”, “02 PLACE UPRIGHT”, “03 ALIGN BEARING”, and “04 INSERT & RETRACT”. Use clear transfer, alignment, insertion and retraction arrows. The screw stands directly on the tabletop; the bearing slides concentrically over it and ends around its base. Use generous whitespace and readable captions, with no measurement claims or simulated contact effects.
+[프로젝트 개요](../README.md)
