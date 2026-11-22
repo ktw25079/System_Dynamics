@@ -1,7 +1,9 @@
-# 작업 순서 개념도
+# 결과 그림
 
 [fig04_final_task_layout.png](fig04_final_task_layout.png)는 스크류 집기 → 수직 배치 → 베어링 정렬 → 삽입·그리퍼 후퇴 순서를 보여 주는 설명용 이미지입니다.
 
 주황색은 스크류, 청록색은 베어링, 파란색 화살표는 이동 방향을 나타냅니다. 실제 모델 구성과 해석 조건은 [모델 설명](../docs/model.md)을 참고하세요.
+
+`joint_torque.png`는 [보관 시계열](../results/torque_timeseries.csv)의 로컬 TZ 토크를 표시합니다. 여섯 패널은 각각 다른 세로축 범위를 사용하며, 점은 절댓값 최대 샘플입니다. [생성 코드](../scripts/plot_torque.py)
 
 [프로젝트 개요](../README.md)

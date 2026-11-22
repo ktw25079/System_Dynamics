@@ -12,13 +12,13 @@
 
 ```bash
 # 저장 결과와 재계산 결과의 일치 여부만 검사
-python scripts/postprocess_results.py --check
+python3 scripts/postprocess_results.py --check
 
 # results/의 CSV 두 개와 검증 JSON을 다시 생성
-python scripts/postprocess_results.py
+python3 scripts/postprocess_results.py
 
 # 다른 입력·출력 경로 지정 옵션
-python scripts/postprocess_results.py --help
+python3 scripts/postprocess_results.py --help
 ```
 
 | 기본 입력 | 역할 |
@@ -30,3 +30,12 @@ python scripts/postprocess_results.py --help
 스크립트는 0–18.5 s의 보관 실행을 대상으로 구성되어 있습니다. 다른 입력을 지정하더라도 샘플 수·모션 상태 수 등의 조건이 유지되는지 검사합니다.
 
 [결과 파일](../results/README.md) · [계산 근거](../docs/torque_review.md) · [프로젝트 개요](../README.md)
+
+## 토크 그래프
+
+[plot_torque.py](plot_torque.py)는 보관 CSV에서 여섯 관절의 토크 그림을 생성합니다. 그래프 생성에만 Matplotlib이 필요하며 기존 결과 검사는 표준 라이브러리만 사용합니다.
+
+```bash
+python3 -m pip install matplotlib
+python3 scripts/plot_torque.py
+```
