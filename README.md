@@ -31,6 +31,10 @@ CAD 형상으로 6축 로봇과 작업물을 구성하고, 웨이포인트와 �
 
 ## 주요 결과
 
+![관절별 로컬 TZ 토크 시계열과 절댓값 최대 지점](assets/joint_torque.png)
+
+관절별 세로축 범위가 다릅니다. 주황색 점은 저장 샘플의 절댓값 최대 지점입니다. [시계열 CSV](results/torque_timeseries.csv) · [그래프 생성 코드](scripts/plot_torque.py)
+
 **18.5 s 작업 · 관절당 901개 샘플.** 저장된 Request의 로컬 회전축 **TZ**에서 구한 절댓값 최대 토크입니다(N·mm → N·m). [계산 기록](results/verification.json)
 
 | 관절 | 최대 토크 (N·m) | 안전율 1.5 적용 (N·m) |
@@ -54,7 +58,7 @@ CAD 형상으로 6축 로봇과 작업물을 구성하고, 웨이포인트와 �
 | [scripts/](scripts/README.md) | 토크 재계산 및 결과 검증 스크립트 |
 | [docs/](docs/README.md) | 과제 요구사항, 모델 구성, 재현 절차와 정정 내역 |
 | [reports/](reports/README.md) | 기존 과제 보고서 PDF·DOCX와 현재 결과의 차이 |
-| [assets/](assets/README.md) | 작업 순서 개념도 |
+| [assets/](assets/README.md) | 작업 순서 개념도·관절 토크 그래프 |
 
 ## 실행 방법
 
@@ -69,10 +73,10 @@ CAD 형상으로 6축 로봇과 작업물을 구성하고, 웨이포인트와 �
 ```bash
 git clone https://github.com/ktw25079/System_Dynamics.git
 cd System_Dynamics
-python scripts/postprocess_results.py --check
+python3 scripts/postprocess_results.py --check
 ```
 
-결과 파일을 다시 만들려면 `python scripts/postprocess_results.py`를 실행합니다. [입력·출력과 검사 항목](scripts/README.md)
+결과 파일을 다시 만들려면 `python3 scripts/postprocess_results.py`를 실행합니다. [입력·출력과 검사 항목](scripts/README.md)
 
 ## 모델링 범위
 
