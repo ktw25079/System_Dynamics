@@ -14,7 +14,7 @@
 저장소 최상위에서 실행합니다. 파일을 덮어쓰거나 솔버를 실행하지 않습니다.
 
 ```bash
-python scripts/postprocess_results.py --check
+python3 scripts/postprocess_results.py --check
 ```
 
 최대 토크는 저장 시각의 샘플 최대값입니다. 실제 모터 축 요구 토크와 같지 않으며, 모터 선정에는 감속비·효율·속도·RMS 토크 검토가 추가로 필요합니다.

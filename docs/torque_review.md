@@ -35,8 +35,8 @@
 ## 재현 및 해석 범위
 
 ```bash
-python scripts/postprocess_results.py
-python scripts/postprocess_results.py --check
+python3 scripts/postprocess_results.py
+python3 scripts/postprocess_results.py --check
 ```
 
 첫 명령은 `results/`에 CSV와 검증 JSON을 생성한다. 두 번째 명령은 파일을 바꾸지 않고 저장 결과가 재계산과 일치하는지 확인한다. Python 3.10 이상이며 추가 패키지는 필요 없다.
