@@ -22,3 +22,8 @@ Desktop.ini
 .env.*
 *.pem
 *.key
+
+# Originals retained separately from the portfolio
+/AGENTS.md
+/reports/
+*.rdyn
