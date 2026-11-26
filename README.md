@@ -8,7 +8,7 @@
 
 **볼 점:** 같은 0–18.5 s 해석의 901개 저장 시각에서 J2 성분을 TY → 로컬 TZ로 바꾸면 6.093 → 54.079 N·m입니다. 운동 성능 개선이 아니라 **하중 해석 오류의 정정**입니다.
 
-[최종 모델](model/SystemDynamics_UR3_pick_place_screw_bearing.rdyn) · [후처리 코드](scripts/postprocess_results.py) · [원시 Request](results/solver/UR3_v81_clean_optimized.req) · [결과 CSV](results/motor_capacity_summary.csv)
+[모션·구속 정의](model/SystemDynamics_UR3_pick_place_screw_bearing.rmd) · [후처리 코드](scripts/postprocess_results.py) · [원시 Request](results/solver/UR3_v81_clean_optimized.req) · [결과 CSV](results/motor_capacity_summary.csv)
 
 ## 해결한 문제와 구현
 
@@ -77,18 +77,17 @@ PASS: six local-TZ requests, 901 samples per joint, 0-18.5 s; committed results 
 
 Windows에서는 `python`, 환경에 따라 `python3`를 사용합니다. [후처리·그래프 실행 안내](scripts/README.md)
 
-동작을 재생·재해석하려면 RecurDyn 2023에서 [최종 모델](model/SystemDynamics_UR3_pick_place_screw_bearing.rdyn)의 작업 사본을 열고 Dynamic Analysis를 18.5 s까지 실행합니다. [모델 동반 파일](model/README.md)과 [단위·적분기·확인 시각](docs/reproduction.md)을 함께 확인하세요. 이번 정리에서는 저장 결과를 재계산했으며 솔버를 새로 실행하지 않았습니다.
+저장소만으로 토크 후처리와 그래프를 재현할 수 있습니다. 제공 CAD의 재배포 권한을 확인하지 못해 형상이 포함된 RDYN은 별도 보관했으며, 동작 재생·솔버 재해석에는 그 원본이 필요합니다. [텍스트 모델과 파라미터](model/README.md) · [원본 보유 시 해석 절차](docs/reproduction.md). 이번 정리에서는 저장 결과를 재계산했으며 솔버를 새로 실행하지 않았습니다.
 
 ## 파일 안내
 
 | 경로 | 내용 |
 | --- | --- |
-| [model/](model/README.md) | 최종 RecurDyn 모델·해석·파라미터 파일 |
+| [model/](model/README.md) | 조인트·모션·Request 텍스트 정의와 파라미터 |
 | [data/](data/README.md) | 경유점·관절 자세·기하 검토·정정 전 토크 |
 | [results/](results/README.md) | 현재 토크 결과와 원시 솔버 출력 |
 | [scripts/](scripts/README.md) | 토크 계산·결과 검사·그래프 생성 |
 | [docs/](docs/README.md) | 요구사항·모델 구성·재현 절차·정정 근거·출처 |
-| [reports/](reports/README.md) | 기존 수업 보고서와 현재 결과의 차이 |
 | [assets/](assets/README.md) | 결과 그래프와 작업 순서 개념도 |
 
 ## 수행 범위와 출처
