@@ -1,14 +1,20 @@
-# 재현 절차
+# 저장 결과 재현과 원본 모델 해석 절차
 
-## 실행 환경
+## 저장소에서 바로 확인할 수 있는 결과
 
-최종 텍스트 모델의 헤더는 RecurDyn 2023 `10.1.40231.2023.10106`입니다. Windows에서 해당 모델을 열 수 있는 RecurDyn과 유효한 라이선스가 필요합니다. 다른 버전의 호환성은 이번 정리에서 시험하지 않았습니다.
+저장소 최상위에서 `python scripts/postprocess_results.py --check`를 실행하면 원시 Request·텍스트 모델로 토크를 재계산하고 저장 결과와 대조합니다. Python 3.10 이상이며 RecurDyn이나 추가 패키지가 필요하지 않습니다.
 
-저장소를 받은 뒤 `model/`을 작업용 폴더에 복사하고 `.rdyn`을 여세요. 원본 모델 파일을 변경하지 않고 작업 사본을 저장하면 기존 결과와 비교하기 쉽습니다.
+CAD 형상을 포함한 RDYN은 제공 자료의 재배포 권한이 확인되지 않아 별도 보관합니다. 아래 동작 재생·Dynamic Analysis 절차는 **원본 RDYN을 보유한 경우**의 안내이며, 저장소 다운로드만으로 CAD 형상을 복원하는 절차는 아닙니다.
+
+## 원본 모델 실행 환경
+
+최종 텍스트 모델의 헤더는 RecurDyn 2023 `10.1.40231.2023.10106`입니다. Windows에서 해당 모델을 열 수 있는 RecurDyn과 유효한 라이선스가 필요합니다. 다른 버전의 호환성은 확인하지 않았습니다.
+
+별도 보관한 원본 RDYN과 동반 파일을 작업용 폴더에 복사하고 `.rdyn`을 여세요. 원본 모델 파일을 변경하지 않고 작업 사본을 저장하면 기존 결과와 비교하기 쉽습니다.
 
 ## 모델과 파라미터
 
-1. `model/SystemDynamics_UR3_pick_place_screw_bearing.rdyn`을 엽니다.
+1. 별도 보관한 `SystemDynamics_UR3_pick_place_screw_bearing.rdyn`의 작업 사본을 엽니다.
 2. UR3의 Base–Wrist3 링크, 단일 강체 그리퍼, 스크류, 베어링, 테이블, 베어링 홀더가 있는지 확인합니다.
 3. J1–J6의 Motion이 STEP expression을 사용하고, 물체 hold/grip/guide 구속의 OnOff 조건이 유지되는지 확인합니다. 최종 모델에 새 접촉 요소를 임의로 추가하면 보관 결과와 달라집니다.
 4. `data/pp_waypoints.csv`에서 물체별 핵심 위치를, `data/joint_table.csv`에서 20개 상태의 시각과 조인트 각도를 확인합니다. PP는 작업 위치를 설명하는 데이터이며, PP 값만 고쳐도 이미 저장된 STEP expression이 자동으로 갱신된다고 가정하면 안 됩니다.
@@ -56,11 +62,11 @@ Dynamic Analysis를 실행한 뒤 메시지의 성공 종료 여부를 확인합
 저장된 원시 결과를 재계산하려면 저장소 최상위에서 실행합니다.
 
 ```bash
-python scripts/postprocess_results.py
+python3 scripts/postprocess_results.py
 ```
 
 결과는 `results/`에 생성됩니다. 실제 동역학 해석 없이 기존 결과를 파싱하는 명령입니다. 재해석 결과를 비교하려면 원본을 보관한 뒤 스크립트의 CLI 도움말에 따라 새 Request/RMD 파일을 지정하세요.
 
 ## 보관 결과와 검증 범위
 
-`results/solver/UR3_v81_clean_optimized.*`의 원래 이름은 출처 추적을 위해 유지했습니다. `model/`은 제출용으로 이름을 정리한 최종본입니다. 이번 업로드 준비에서는 원본 파일 해시, 요구사항 대응, 결과 파싱, 토크 계산과 로컬 문서 링크를 검사했습니다. 다른 PC에서 RecurDyn 모델을 열고 솔버를 재실행하는 시험은 수행하지 않았습니다.
+`results/solver/UR3_v81_clean_optimized.*`의 원래 이름은 출처 추적을 위해 유지했습니다. `model/`에는 제출용으로 이름을 정리한 텍스트 모델과 파라미터만 포함합니다. `--check`는 보관 결과의 축·단위·토크 계산 일치 여부를 검사합니다. 다른 PC에서의 모델 실행과 솔버 재해석은 별도 검증이 필요합니다.
