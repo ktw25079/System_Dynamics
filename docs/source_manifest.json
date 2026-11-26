@@ -1,10 +1,5 @@
 [
   {
-    "path": "model/SystemDynamics_UR3_pick_place_screw_bearing.rdyn",
-    "source": "final_deliverable/SystemDynamics_UR3_pick_place_screw_bearing.rdyn",
-    "sha256": "365d38a6d70bceaf1e8ddc70de3efca8a5c92b0a42a8fec44f347efdd1f86036"
-  },
-  {
     "path": "model/SystemDynamics_UR3_pick_place_screw_bearing.rmd",
     "source": "final_deliverable/SystemDynamics_UR3_pick_place_screw_bearing.rmd",
     "sha256": "e12e74fdd2cdde7b8da709b219de89343b979fada06d0ea7b4cf5e3ac50870df"
@@ -43,16 +38,6 @@
     "path": "data/original/torque_timeseries.csv",
     "source": "final_deliverable/SystemDynamics_UR3_pick_place_screw_bearing_torque_timeseries.csv",
     "sha256": "2eee985ea0bf96b32e57f1f3425ef9d78e2a7fba97d4bc4be728b6374b3a97f6"
-  },
-  {
-    "path": "reports/original/SystemDynamics_UR3_pick_place_screw_bearing_report.docx",
-    "source": "course_submission/SysDyn_RD/SystemDynamics_UR3_pick_place_screw_bearing_report.docx",
-    "sha256": "3eff078677921428efd07e9c5ce3fb464b0b798e8fdfb0d7e6f8d0ec7970eeea"
-  },
-  {
-    "path": "reports/original/SystemDynamics_UR3_pick_place_screw_bearing_report.pdf",
-    "source": "course_submission/SysDyn_RD/SystemDynamics_UR3_pick_place_screw_bearing_report.pdf",
-    "sha256": "36fb964f60a358809e454fac69b26d59a39438420b95512e1ab6d68462775d18"
   },
   {
     "path": "assets/fig04_final_task_layout.png",
