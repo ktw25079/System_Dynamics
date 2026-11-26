@@ -38,4 +38,7 @@ python3 scripts/postprocess_results.py --help
 ```bash
 python3 -m pip install matplotlib
 python3 scripts/plot_torque.py
+python3 scripts/plot_torque_comparison.py
 ```
+
+[plot_torque_comparison.py](plot_torque_comparison.py)는 [정정 전 요약](../data/original/motor_capacity_summary.csv)과 [현재 요약](../results/motor_capacity_summary.csv)을 같은 N·m 축에서 비교해 [README 대표 그래프](../assets/torque_comparison.png)를 만듭니다. 동일 해석의 성분 선택 정정이며, 시뮬레이션 성능 개선을 비교하지 않습니다. Windows에서는 설치된 명령에 따라 `python3` 대신 `python`을 사용합니다.
