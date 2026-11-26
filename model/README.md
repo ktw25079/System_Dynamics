@@ -1,4 +1,4 @@
-# 최종 RecurDyn 모델
+# 모션·구속 정의와 파라미터
 
 ## 요구사항과 해결 방법
 
@@ -12,11 +12,10 @@ UR3가 스크류를 세워 놓고 베어링을 정렬해 삽입하도록 경로�
 
 ## 파일과 실행
 
-RecurDyn 2023에서 [주 모델](SystemDynamics_UR3_pick_place_screw_bearing.rdyn)을 엽니다. 아래 파일은 같은 폴더에 유지합니다.
+아래 텍스트 파일에서 조인트·모션·Request 설정을 확인할 수 있습니다. 제공 CAD 형상을 포함한 RDYN은 재배포 권한이 확인되지 않아 별도 보관합니다. 이 폴더만으로 원래 CAD 형상의 동작을 재생할 수는 없으며, 저장 결과의 토크 재계산은 가능합니다.
 
 | 파일 | 역할 |
 | --- | --- |
-| [모델 RDYN](SystemDynamics_UR3_pick_place_screw_bearing.rdyn) | UR3, 그리퍼, 스크류·베어링과 작업 환경 |
 | [텍스트 모델 RMD](SystemDynamics_UR3_pick_place_screw_bearing.rmd) | 조인트·모션·Request 정의와 단위 확인 |
 | [파라미터 RPP](SystemDynamics_UR3_pick_place_screw_bearing.rpp) | 두 작업물의 핵심 위치 파라미터 |
 | [파라미터 RPV](SystemDynamics_UR3_pick_place_screw_bearing.rpv) | 최종 모델과 함께 보관한 PV 파일 |
