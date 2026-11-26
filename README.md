@@ -1,90 +1,25 @@
-# UR3 Pick and Place — System Dynamics
+# UR3 시뮬레이션 초기 정리본
 
-**2026년 1학기 시스템동역학 프로젝트 · 강태욱**
+[현재 포트폴리오 보기](https://github.com/ktw25079/System_Dynamics/tree/main)
 
-UR3 로봇으로 스크류와 베어링을 순서대로 이송하고, 세워 놓은 스크류에 베어링을 수직으로 삽입하는 **RecurDyn 다물체 동역학 시뮬레이션**입니다. CAD 기반 링크와 조인트를 구성하고, 웨이포인트에 따른 관절 모션을 적용한 뒤 6개 관절의 토크를 분석합니다.
+이 브랜치는 파일별 커밋을 정리하기 전의 결과 보관본입니다. 학번이 포함된 보고서와 제공 CAD 형상이 포함된 RDYN은 별도 보관하고, 토크 재계산에 필요한 자료를 유지했습니다.
 
-![스크류 이송과 베어링 삽입의 작업 개념도](assets/fig04_final_task_layout.png)
+## 구현과 결과
 
-*위 그림은 작업 순서를 설명하는 개념도입니다. 실제 RecurDyn 화면 캡처가 아닙니다.*
+스크류 이송·베어링 삽입을 20개 모션 상태, 18.5 s 경로로 구성한 RecurDyn 시뮬레이션입니다. 강체 그리퍼와 OnOff 구속을 사용하며 실제 마찰 파지·접촉 충격 시험은 포함하지 않습니다.
 
-## 프로젝트 개요
+원시 해석의 0–18.5 s, 관절당 901개 저장 시각에서 로컬 TZ를 읽으면 J2의 샘플 최대 토크는 54.079 N·m입니다. 안전율 1.5 적용값은 81.119 N·m이며, 실제 모터 선정값과 구분합니다.
 
-| 항목 | 내용 |
-|---|---|
-| 과목 / 학기 | 시스템동역학 / 2026년 1학기 |
-| 플랫폼 | RecurDyn 2023, UR3 CAD 기반 6축 매니퓰레이터 |
-| 작업 대상 | 스크류 1개, 베어링 1개 |
-| 작업 순서 | 스크류 접근 → 집기 → 이송 → 세우기 → 베어링 집기 → 동축 정렬 → 삽입 → 후퇴 |
-| 모션 | 6개 회전 조인트의 STEP expression, OnOff 구속 전환 |
-| 웨이포인트 | 공개 PP 10개: 스크류 5개 + 베어링 5개, 내부 모션 상태 20개 |
-| 해석 구간 | 0–18.5 s |
-| 기본 단위 | mm, kg, N, s; 결과 토크는 N·m로 변환 |
+[모션·구속 정의](model/SystemDynamics_UR3_pick_place_screw_bearing.rmd) · [원시 Request](results/solver/UR3_v81_clean_optimized.req) · [결과 CSV](results/motor_capacity_summary.csv) · [후처리 코드](scripts/postprocess_results.py)
 
-최종 모델의 그리퍼는 **단일 강체**이며, 물체를 잡고 놓는 과정은 구속 조건의 활성화/비활성화로 구현했습니다. 베어링의 마지막 하강도 수직 가이드 모션과 최종 hold로 제어합니다. 따라서 마찰에 의한 실제 파지, 접촉 충격, 자유낙하, PID 제어 성능을 검증한 모델로 해석하면 안 됩니다.
+## 저장 결과 확인
 
-## 빠르게 열어 보기
-
-1. 저장소를 내려받습니다. 비공개 저장소이므로 소유자 또는 접근 권한이 있는 계정으로 로그인해야 합니다.
-2. RecurDyn 2023에서 [최종 모델](model/SystemDynamics_UR3_pick_place_screw_bearing.rdyn)을 엽니다.
-3. 별도 작업 폴더에 **Save As**로 저장하고, Dynamic Analysis를 18.5 s까지 실행합니다. 자세한 설정은 [재현 절차](docs/reproduction.md)를 참고하세요.
-4. 애니메이션과 J1–J6 torque request를 확인합니다. 저장된 원시 해석 결과는 [results/solver](results/solver)에 있습니다.
-
-모델과 같은 폴더의 `.rmd`, `.rpp`, `.rpv`를 함께 보관하세요. `.rdyn`은 GUI 모델, `.rmd`는 텍스트 해석 모델, `.rpp`는 핵심 웨이포인트입니다. `.rpv`에 사용자 값이 없는 것은 최종 모델이 직접 숫자를 넣은 STEP expression을 사용하기 때문입니다.
-
-## 과제 조건과 구현
-
-| 과제 조건 | 저장소에서 확인할 내용 |
-|---|---|
-| 제공된 UR3 CAD를 이용한 동역학 모델 | [model](model)의 UR3 링크와 6축 회전 조인트 |
-| 두 개 이상 물체의 이동 | 스크류와 베어링의 순차 이송 및 삽입 동작 |
-| 물체별 최소 3개 웨이포인트 | [pp_waypoints.csv](data/pp_waypoints.csv), 각 5개 |
-| 관절 액추에이터 토크 확인 및 모터 용량 판단 | [수정 토크 분석](docs/torque_review.md), [재계산 결과](results/motor_capacity_summary.csv) |
-| CAD와 보고서로 재현 가능하게 설명 | [재현 절차](docs/reproduction.md), [모델 설명](docs/model.md), 원시 해석 결과와 후처리 스크립트 |
-
-과제 원문과 구현 범위의 상세 대응은 [요구사항](docs/requirements.md)에 정리했습니다.
-
-## 토크 결과
-
-GitHub 정리 과정에서 기존 후처리의 일부 토크 축 선택을 바로잡았습니다. 회전 조인트의 로컬 회전축은 Z이며, 최종 모델의 Request는 각 조인트의 기준 마커 좌표계로 출력하므로 **모든 관절의 TZ**를 사용합니다.
-
-| 관절 | 최대 절댓값 토크 (N·m) | 안전율 1.5 적용 (N·m) |
-|---|---:|---:|
-| J1 Base | 6.461 | 9.691 |
-| J2 Shoulder | 54.079 | 81.119 |
-| J3 Elbow | 21.968 | 32.953 |
-| J4 Wrist 1 | 15.211 | 22.817 |
-| J5 Wrist 2 | 6.642 | 9.963 |
-| J6 Wrist 3 | 0.120 | 0.180 |
-
-이 값은 저장된 해석 샘플의 **관절 출력축 토크 기준**입니다. 모터 단품을 선정하려면 감속비, 효율, 속도, RMS 토크, 운전 주기 등을 추가 검토해야 합니다. 계산식과 기존 표와의 차이는 [토크 검토](docs/torque_review.md)를 참고하세요.
-
-## 파일 구성
-
-```text
-model/              최종 RecurDyn 모델과 텍스트/파라미터 파일
-data/               20개 모션 상태, 10개 핵심 PP, 기하학적 여유 검토
-data/original/      이전 토크 CSV 보관본 (수정 전)
-results/            회전축 기준으로 다시 계산한 토크 결과
-results/solver/     최종 해석의 원시 Request와 결과 파일
-scripts/            Python 표준 라이브러리 기반 후처리
-docs/               과제 조건, 모델 구성, 재현 절차, 정정 사항
-assets/             부품과 작업 순서를 설명하는 개념도
-reports/original/   기존 과제 보고서 보관본
-```
-
-**기존 보고서에는 최종 모델과 다른 접촉 설명 및 수정 전 토크 표가 남아 있습니다.** 모델 설명과 토크 값은 이 README와 `docs/`, `results/`를 기준으로 읽어 주세요. [정정 내역](docs/errata.md)에 차이를 명시했습니다.
-
-## 결과 재계산
-
-RecurDyn을 설치하지 않아도 저장된 원시 결과를 Python으로 후처리할 수 있습니다.
+저장소 최상위에서 Python 3.10 이상으로 실행합니다. 추가 패키지나 RecurDyn이 필요하지 않습니다.
 
 ```bash
-python scripts/postprocess_results.py
+python scripts/postprocess_results.py --check
 ```
 
-추가 Python 패키지 없이 실행합니다. RecurDyn 재해석과 기존 결과의 후처리는 서로 다른 작업입니다. 이 저장소 준비 시에는 보관된 최종 해석 결과를 재검산했으며, 새로 동역학 솔버를 실행한 것은 아닙니다.
+[축 선택 근거](docs/torque_review.md) · [모델 구성](docs/model.md) · [원본 보유 시 해석 절차](docs/reproduction.md) · [정정 내역](docs/errata.md) · [자료 출처](docs/source_manifest.json)
 
-## 출처와 이용 범위
-
-UR3 CAD와 매니퓰레이터 강의 예제를 바탕으로 수행한 수업 프로젝트입니다. 과제 및 강의 PDF 원문, RecurDyn 설치 파일은 포함하지 않습니다. 원본 CAD와 상용 소프트웨어의 권리는 각 권리자에게 있으며, 이 저장소에 일괄 오픈소스 라이선스를 부여하지 않았습니다. 파일 출처 및 원본 해시는 [source_manifest.json](docs/source_manifest.json)에 기록했습니다.
+RDYN을 포함하지 않으므로 이 브랜치만으로 원래 CAD 형상의 동작을 재생하거나 솔버를 재해석할 수는 없습니다.
